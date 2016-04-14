@@ -268,9 +268,13 @@
   [sheet]
   (let [anchors (-> sheet .createDrawingPatriarch .getCTDrawing .getTwoCellAnchorList)]
     (into {} (for [anchor anchors]
-               [(-> anchor .getGraphicFrame .getGraphic .getGraphicData .getDomNode
-                    .getChildNodes (.item 0) (.getAttribute "r:id"))
-                anchor]))))
+               (try
+                 [(-> anchor .getGraphicFrame .getGraphic .getGraphicData .getDomNode
+                      .getChildNodes (.item 0) (.getAttribute "r:id"))
+                  anchor]
+                 (catch NullPointerException e
+                   ;; skip missing data
+                   nil))))))
 
 (defn get-part-id
   "Get the part id for a document part in the drawing patriarch"
