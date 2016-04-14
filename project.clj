@@ -9,4 +9,7 @@
                  [org.apache.poi/ooxml-schemas "1.1"]
                  [org.clojure/data.zip "0.1.1" :exclusions [[org.clojure/clojure]]]
                  [joda-time "2.7"]]
+  :repositories [["central" "https://repo1.maven.org/maven2"]
+                 ["clojars" {:url "https://clojars.org/repo"
+                             :sign-releases false}]]
   :profiles {:repl {:dependencies [[org.clojure/clojure "1.7.0"]]}})
