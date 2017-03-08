@@ -45,7 +45,8 @@
                 [start (count v) (inc (- end start))])
               [k (count v) 1]))]
     (let [result (sort-by first (map build-entry data-seq))]
-      (if (zero? (ffirst result))
+      (if (and (ffirst result)
+               (zero? (ffirst result)))
         result
         (concat [[0 1 1]] result)))))
 
